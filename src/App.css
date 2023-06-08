@@ -1,38 +1,325 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 75px;
+  /* height: 2000px; */
+  background-color: #121212 !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-weight: 400;
+  overflow-x: hidden;
+  position: relative;
+  background-color: #121212 !important;
+  /* padding-top: 100px; */
+  color: #fff !important;
+  font-family: 'Centra', sans-serif !important;
+  background-color: #ffffff !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  line-height: normal;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* 전체 네비게이션 박스 */
+nav.navbar {
+  background-color: transparent;
+  padding: 18px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 9999;
+  transition: 0.32s ease-in-out;
+  /* background-color: bisque; */
+}
+
+
+
+nav.navbar .navbar-brand img {
+  width: 130px;
+}
+
+nav.navbar.scrolled {
+  background-color: black;
+}
+
+
+nav.navbar .navbar-nav .nav-link.navbar-link {
+  font-weight: 400;
+  color: white !important; 
+  opacity: 0.75;
+  /* background-color: aqua; */
+  letter-spacing: 0.8px;
+  margin-right: 0;
+  font-size: 18px;
+}
+
+nav.navbar .navbar-nav .nav-link.navbar-link:hover,
+nav.navbar .navbar-nav .nav-link.navbar-link.active {
+  opacity: 1;
+}
+
+span.navbar-text {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  /* background-color: beige; */
+}
+
+.social-icon {
+  display: inline-block;
+  margin-left: 14px;
+}
+.social-icon a {
+  width: 35px;
+  height: 35px;
+  /* background: hsla(0, 0%, 7%, 0.16); */
+  display: inline-flex;
+  margin-right: 10px;
+  border-radius: 50%;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  line-height: 1;
+  border: 1px solid rgba(200, 195, 195, 0.473);
 }
 
-.App-link {
-  color: #61dafb;
+.social-icon a::before {
+  content: '';
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #ffffff;
+  /* 0이되면 아예 안보이는 듯 */
+  transform: scale(0);
+  transition: 0.3s ease-in-out;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.social-icon a:hover::before {
+  transform: scale(1);
+}
+.social-icon a img {
+  width: 40%;
+  z-index: 1;
+  /* transition: 0.3s ease-in-out; */
+}
+
+.social-icon a:hover img {
+	filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rotate(346deg) brightness(95%) contrast(86%);
+}
+
+/* 버튼 */
+.navbar-text button {
+  font-weight: 700;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 18px 34px;
+  font-size: 18px;
+  margin-left: 18px;
+  position: relative;
+  background-color: transparent;
+  transition: 0.3s ease-in-out;
+}
+
+.collapsed {
+  border: none;
+}
+
+.navbar-text button span {
+  z-index: 1;
+}
+
+.navbar-text button::before {
+  content: '';
+  /* !!!!! */
+  width: 0%;
+   /* !!!!! */
+  height: 100%;
+  position: absolute;
+  background-color: #fff;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  transition: 0.3s ease-in-out;
+}
+
+.navbar-text button:hover {
+  color: black;
+}
+
+.navbar-text button:hover::before {
+  content: '';
+   /* !!!!! */
+  width: 100%;
+   /* !!!!! */
+  height: 100%;
+  position: absolute;
+}
+
+/* 화면 줄이면 나타나는 버튼 */
+nav.navbar .navbar-toggler {
+  /* background-color: aqua; */
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+nav.navbar .navbar-toggler-icon {
+  width: 24px;
+  height: 17px;
+  background-image: none;
+  position: relative;
+  border-bottom: 2px solid white;
+  transition: all 300ms linear;
+  top: -2px;
+  /* border: none; */
+}
+
+nav.navbar .navbar-toggler-icon:focus {
+	border-bottom: 2px solid #fff;
+}
+
+
+/* ------------banner------------- */
+
+.banner {
+  width: 100%;
+  margin-top: 0;
+  padding: 300px 0 100px 0;
+  background-image: url('https://github.com/judygab/web-dev-projects/blob/main/personal-portfolio/src/assets/img/banner-bg.png?raw=true');
+  background-position: center;
+  background-size: cover;
+  z-index: 0;
+}
+
+/* .navbar-toggler .collapsed:hover .banner {
+  position: absolute;
+  top: 290px;
+} */
+
+.banner .tagline {
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  padding: 8px 10px;
+  background: linear-gradient(90.21deg, rgba(170, 54, 124, 0.5) -5.91%, rgba(74, 47, 189, 0.5) 111.58%);
+  border:  1px solid rgba(128, 128, 128, 0.432);
+  font-size: 20px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.banner h1 {
+  font-size: 65px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 1;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.banner p {
+  font-weight: 700;
+  font-size: 20px;
+  margin-top: 60px;
+  letter-spacing: 0.8px;
+  display: flex;
+  align-items: center;
+}
+
+.banner button {
+  color: rgba(255, 255, 255, 0.583);
+  font-weight: 700;
+  font-size: 20px;
+  margin-top: 20px;
+  letter-spacing: 0.8px;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+}
+
+.banner img {
+  animation: updown 3s linear infinite;
+}
+
+@keyframes updown {
+  0% {
+    transform: translateY(-20px);
+  }50% {
+    transform: translateY(20px);
+  }100% {
+    transform: translateY(-20px);
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+.faArrow {
+  border: 1px solid rgba(255, 255, 255, 0.507);
+  color: rgba(255, 255, 255, 0.642);
+  border-radius: 50%;
+  padding: 1px;
+  margin-left: 5px;
+}
+
+.align-item-center button {
+  display: flex;
+  align-items: center;
+}
+
+
+
+/* ----------skills----------- */
+
+.skill {
+  padding: 0 0 50px 0;
+  position: relative;
+  background-color: #121212 !important;
+}
+
+.skill-bx {
+  background-color: #151515;
+  position: relative;
+  border-radius: 64px;
+  text-align: center;
+  padding: 60px 50px;
+  margin-top: -60px;
+  z-index: 7;
+}
+
+.skill h2 {
+  font-size: 45px;
+  font-weight: 700;
+}
+
+.skill p {
+  color: #b8b8b8;
+  font-size: 18px;
+  letter-spacing: 0.8px;
+  line-height: 1.5em;
+  margin: 14px 0 75px 0;
+}
+
+.skills-slider {
+  width: 90%;
+  /* background-color: aqua; */
+  margin: 0 auto;
+  position: relative;
+}
+
+.skills-slider .item img {
+  width: 50%;
+  margin: 0 auto 15px auto;
+}
+
+.skills-background {
+  position: absolute;
+  bottom: 0;
+  top: 28%;
+  /* background-color: aquamarine; */
+  width: 40%;
+  /* z-index: -4; */
 }
